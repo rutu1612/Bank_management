@@ -1,0 +1,51 @@
+{% extends 'base_layout.html' %}
+
+{% block stylecontent %}
+<style>
+    h1 {
+        border-top-style: dotted;
+        border-right-style: solid;
+        border-bottom-style: dotted;
+        border-left-style: solid;
+        font-size: 70px;
+        font-family: algerian;
+    }
+
+    h4 {
+        font-weight: 400;
+        font-size: 30px;
+    }
+
+    a:hover {
+        text-decoration: none;
+    }
+
+    .foot {
+        position: absolute;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+    }
+</style>
+{% endblock %}
+
+
+{% block bodycontent %}
+<br><br>
+<div class="container text-center">
+    <h1>!! WELCOME to BOI !!</h1><br>
+    <h4><em><b>..........We are here to help you :)..........</b></em></h4>
+</div>
+
+<br><br><br>
+
+<div class="container">
+    <a href="{% url 'accounts:signup' %}"><button class="btn btn-info btn-block" id="acc"><i
+                class="fa fa-file-text"></i> Create new account</button></a>
+    <br><br>
+    <a href="{% url 'accounts:signin' %}"><button class="btn btn-warning btn-block" id="sign_in"><i
+                class="fa fa-sign-in"></i> Sign in</button></a>
+</div>
+
+<br>
+{% endblock %}

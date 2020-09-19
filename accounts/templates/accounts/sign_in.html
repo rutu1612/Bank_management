@@ -1,0 +1,53 @@
+{% extends 'base_layout.html' %}
+
+{% block stylecontent %}
+<style>
+    body {
+        background-color: lemonchiffon;
+    }
+
+    .foot {
+        position: absolute;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+    }
+</style>
+{% endblock %}
+
+
+{% block bodycontent%}
+<br><br><br>
+<div class="container">
+    <form class="form-control" action="/accounts/login/" method="post">
+        {% csrf_token %}
+        <h2>Enter login details</h2><br>
+
+        {{ form }}
+
+        <br>
+        <br>
+
+        <button type="submit" class="btn btn-primary">
+            <i class="fa fa-sign-in"></i>
+            Login
+        </button>
+
+        <br> <br>
+
+        <small class="row">
+            <a href="#" class="col text-left">Forgot password?</a>
+            <a href="{% url 'accounts:signup' %}" class="col text-right">Create New Account</a>
+        </small>
+    </form>
+</div>
+
+{% endblock %}
+
+{% block scriptcontent %}
+<script>
+    $(".active").removeClass("active");
+    $("#nav-login").addClass("active");
+    $("input").addClass("form-control");
+</script>
+{% endblock %}
