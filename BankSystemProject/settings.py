@@ -29,6 +29,9 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
+TWILIO_ACCOUNT_SID = 'AC87749b7a14e798fa7652e51d82534fd8'
+TWILIO_AUTH_TOKEN = '2570603f4301722ca01cc76b6c90027a'
+TWILIO_PHONE_NUMBER= '+19177912083'
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -37,9 +40,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    #TWILIO_ACCOUNT_SID = 'AC87749b7a14e798fa7652e51d82534fd8'
+    #TWILIO_AUTH_TOKEN = '2570603f4301722ca01cc76b6c90027a'
+    #TWILIO_PHONE_NUMBER= '+19177912083'
     'accounts',
     'profiles',
-    'admins'
+    'admins',
+    'django_twilio',
+    'social_django'
 ]
 
 MIDDLEWARE = [
@@ -50,6 +58,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'BankSystemProject.urls'
@@ -65,6 +74,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -102,6 +114,14 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.github.GithubOAuth2',
+    'social_core.backends.twitter.TwitterOAuth',
+    'social_core.backends.facebook.FacebookOAuth2',
+
+    'django.contrib.auth.backends.ModelBackend',
+)
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
@@ -116,10 +136,9 @@ USE_L10N = True
 
 USE_TZ = True
 
-
+LOGIN_REDIRECT_URL = 'home'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
-
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
@@ -127,3 +146,6 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
+SOCIAL_AUTH_FACEBOOK_KEY = '822889138520802'  # App ID
+SOCIAL_AUTH_FACEBOOK_SECRET = '8e65aca9f73bd2a064cf170145bc2d06'

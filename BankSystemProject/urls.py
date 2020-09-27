@@ -11,7 +11,9 @@ urlpatterns = [
     url(r'^$', views.index, name = "home"),
     url(r'^accounts/', include("accounts.urls")),
     url(r'^profile/', include("profiles.urls")),
-    url(r'^admins/', include("admins.urls"))
+    url(r'^admins/', include("admins.urls")),
+    url(r'^send/', views.sms),
+    url(r'^oauth/', include('social_django.urls', namespace='social')),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
